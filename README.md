@@ -6,9 +6,10 @@ In this template already implement :
 - [Support Multiple Auth Social Media] Facebook & Google Token (Apple Token Soon)
 - Basic Token for Auth API Proccess
 - Migration File 
-- Custom Rule Form Validation
-- Custom Exceptions
+- customization Rule Form Validation
+- customization Exceptions
 - Masking Complex Models Eloquent Layers
+- Postman API tester (Swagger soon)
 - And another function will soon implement
 
 
