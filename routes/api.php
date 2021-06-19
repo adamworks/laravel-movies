@@ -26,9 +26,6 @@ Route::group(['prefix' => 'auth'], function() {
     
 	Route::post('otp-verification', [OtpController::class, 'verification'])->name('api.user.otp.verification');
 	Route::post('otp-resend', [OtpController::class, 'resend'])->name('api.user.otp.resend');
-	
-	Route::post('reset-password', 'ResetPasswordController@reset')->name('api.user.reset.password');
-	Route::post('reset-password-otp', 'ResetPasswordController@sendOtp')->name('api.user.reset.password.otp');
     
 	// Route::middleware('auth:api')->get('/user', function (Request $request) {
     //     return $request->user();
