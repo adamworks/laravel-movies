@@ -38,7 +38,6 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            //Route::domain(env('URL_API', 'api.laraauth8.local'))
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)
