@@ -29,12 +29,12 @@ class RegisterUserService
       */
 
     public function __construct(
-      OtpService            $otpService,
+      OtpService            $otpServices,
       ActivationService     $activationService,
       UserRepository        $userRepository,
       ActivationRepository  $activationRepository
     ) {
-        $this->otpService           = $otpService;
+        $this->otpService           = $otpServices;
         $this->activationService    = $activationService;
         $this->userRepository       = $userRepository;
         $this->activationRepository = $activationRepository;
