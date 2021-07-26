@@ -52,9 +52,9 @@ class MovieService
         } 
     } 
 
-    public function searchMovie(string $search)
+    public function searchMovie(string $search,$page=1)
     {
-        $host ='&s=' . $search;
+        $host ='&s=' . $search . '&page=' .$page;
 
         $method = 'GET';
 

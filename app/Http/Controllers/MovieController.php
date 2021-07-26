@@ -22,25 +22,30 @@ class MovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //return view('');
-    }
-
-
-
-    public function search(Request $request)
+    public function index(Request $request,$page=1)
     {
         $data = $request->search;
+        $info = [];
+        
+        if(isset($request)){
+            $info['current_page'] = $page;
+            $info['search'] = $data;
+            $info['prev'] = $info['current_page']-1;
+            $info['next'] = $info['current_page']+1;
 
-        try {
-            $movies = $this->movieService->searchMovie($data);
-
-            return successResponse("successfull", $movies);
-        } catch (FormValidationException $exception){
-            return $exception->getResponse("failed to retrive");
+            try {
+                $movies = $this->movieService->searchMovie($data,$page);
+                //dd($movies->Search);
+                return view('movie.index',compact('movies','info'));
+                //return successResponse("successfull", $movies);
+            } catch (FormValidationException $exception){
+                return $exception->getResponse("failed to retrive");
+            }
+        } else {
+            return view('movie.index');
         }
-    
+
+        //return view('movie.index');
     }
 
     /**
