@@ -21,5 +21,11 @@ Route::get('/', function () {
 
 Route::get('/movies/{page?}', [MovieController::class, 'index'])->name('movie.index');
 Route::get('/login-web', [AuthController::class, 'loginWeb'])->name('web.user.login');
-Route::post('/login-web', [AuthController::class, 'loginWebAuth'])->name('web.user.login');
+Route::post('/login-web', [AuthController::class, 'loginWebAuth'])->name('web.user.auth');
+
+Route::group(['middleware' => 'auth'], function () {
+ 
+    Route::get('/logout', [AuthController::class, 'logout'])->name('web.user.logout');
+ 
+});
 	

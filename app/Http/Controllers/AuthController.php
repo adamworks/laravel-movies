@@ -13,6 +13,7 @@ use App\Services\Auth\Form\LoginUserForm;
 use App\Services\Auth\Form\LoginUserWithSosmedForm;
 use App\Services\Auth\Exception\LoginUserException;
 use App\Services\Auth\Exception\SosmedLoginUserException;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -144,11 +145,34 @@ class AuthController extends Controller
 
     public function loginWeb()
     {
-
+        if (Auth::check()){
+            return redirect()->route('movie.index');
+        } else {
+            return view('auth.login');
+        }
     }
 
-    public function loginWebAuth()
+    public function loginWebAuth(Request $request)
     {
+        $data = $request->all();
+        $data['type'] = 'web';
+        $form = new LoginUserForm($data);
         
+        try {
+            $this->loginUserService->login($form);
+            
+            return redirect()->route('movie.index');
+
+        } catch (FormValidationException $exception) {
+            return $exception->getResponse();
+        } catch (LoginUserException $exception) {
+            return $exception->getResponse();
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout(); 
+        return redirect()->route('movie.index');
     }
 }

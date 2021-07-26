@@ -26,10 +26,16 @@
   </div>
 
   <div data-nav-content="" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block">
-    <div class="text-md lg:flex-shrink absolute right-0 w-36">
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white text-teal-lighter hover:text-black mr-4 rounded focus:outline-none focus:shadow-outline">
+    <div data-nav-content="" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block"></div>
+    <div class="text-md lg:flex-shrink">
+    @if(Auth::check())
+        <p class="block mt-4 lg:inline-block lg:mt-0 text-white text-teal-lighter hover:text-black mr-4 rounded focus:outline-none focus:shadow-outline">{{ Auth::user()->name }}</p>
+        <a href="{{ route('web.user.logout') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white text-teal-lighter hover:text-black mr-4 rounded focus:outline-none focus:shadow-outline">Logout</a>
+    @else
+        <a href="{{ route('web.user.login') }}" class="block mt-4 lg:inline-block lg:mt-0 text-white text-teal-lighter hover:text-black mr-4 rounded focus:outline-none focus:shadow-outline">
         Login / Register
-      </a>
+        </a>
+    @endif
     </div>
   </div>
 </nav>
@@ -41,6 +47,7 @@
           <h1 class="text-3xl text-center">Temukan Film & Informasi yang kamu cari</h1>
           <div class="flex flex-col sm:flex-row gap-6 mt-2">
             <form action="{{ route('movie.index') }}" method="GET" class="w-full flex flex-col sm:flex-row gap-6 mt-8">
+                @csrf
                 <input type="text" name="search" class="w-2/3 bg-gray-200 p-2 rounded shadow-sm border border-gray-200 focus:outline-none focus:bg-white" placeholder="ketik judul film">
                 <button type="submit" class="w-1/3 bg-indigo-500 text-white p-3 rounded shadow-sm focus:outline-none hover:bg-indigo-700"> Cari</button>
             </form>
@@ -61,6 +68,7 @@
                 </tr>
             </thead>
             <tbody class="bg-gray-200">
+                @if(!empty($movie))
                 @forelse($movies->Search as $movie)
                     <tr class="bg-white border-2 border-gray-200">
                         <td class="px-16 py-2">
@@ -78,6 +86,7 @@
                        Film tidak Tersedia
                     </div>
                 @endforelse
+                @endif
             </tbody>
         </table>
         <div class="mt-2">

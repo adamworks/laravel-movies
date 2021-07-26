@@ -21,18 +21,29 @@ class LoginUserService
 
     public function login(LoginUserForm $form)
 	{
-        // validating data, if fails it throw an exception
+		// validating data, if fails it throw an exception
 		$data = $form->getValidData();
+		
+		if(isset($data['type']) && $data['type']=='web'){
+			if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
+				$user = Auth::User();
+				$this->userStatusChecker($user);
 
-		// auth process
-		if (Auth::attempt(['phone_number' => $data['phone_number'], 'password' => $data['password']])) {
-		    $user = Auth::User();
-		    $this->userStatusChecker($user);
+				// The user is active, not suspended, and exists.
+				return $user;
+			} else {
+				throw new LoginUserException(['password' => trans('login.wrongCredentials')], trans('login.wrongCredentials'));
+			}
+		} else {	// auth process
+			if (Auth::attempt(['phone_number' => $data['phone_number'], 'password' => $data['password']])) {
+				$user = Auth::User();
+				$this->userStatusChecker($user);
 
-		    // The user is active, not suspended, and exists.
-		    return $user;
-		} else {
-			throw new LoginUserException(['password' => trans('login.wrongCredentials')], trans('login.wrongCredentials'));
+				// The user is active, not suspended, and exists.
+				return $user;
+			} else {
+				throw new LoginUserException(['password' => trans('login.wrongCredentials')], trans('login.wrongCredentials'));
+			}
 		}
 	}
 

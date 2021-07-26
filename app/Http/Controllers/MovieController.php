@@ -27,7 +27,7 @@ class MovieController extends Controller
         $data = $request->search;
         $info = [];
         
-        if(isset($request)){
+        if(!empty($data)){
             $info['current_page'] = $page;
             $info['search'] = $data;
             $info['prev'] = $info['current_page']-1;
