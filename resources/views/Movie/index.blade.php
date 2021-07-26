@@ -8,6 +8,32 @@
     <title>Movie Search</title>
 </head>
 <body>
+<nav class="flex items-center justify-between flex-wrap bg-teal p-6 bg-indigo-500">
+  <div class="flex items-center flex-no-shrink text-white mr-6">
+    <span class="font-semibold text-xl tracking-tight">
+      Laramovies
+    </span>
+  </div>
+  <div class="block lg:hidden">
+    <button data-toggle-hide="[data-nav-content]" class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white rounded focus:outline-none focus:shadow-outline">
+      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <title>
+          Menu
+        </title>
+        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+      </svg>
+    </button>
+  </div>
+
+  <div data-nav-content="" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block">
+    <div class="text-sm lg:flex-shrink">
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4 rounded focus:outline-none focus:shadow-outline">
+        Login
+      </a>
+    </div>
+  </div>
+</nav>
+
 <div class="container mx-auto mt-10 mb-10">
     <div class="bg-white p-5 rounded shadow-sm">
         <div class="sm:w-3/4 lg:w-2/4 mx-auto gap-4 mb-4">
@@ -83,6 +109,6 @@
     </div>
 </div>
 
-    <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
