@@ -26,9 +26,9 @@
   </div>
 
   <div data-nav-content="" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block">
-    <div class="text-sm lg:flex-shrink">
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4 rounded focus:outline-none focus:shadow-outline">
-        Login
+    <div class="text-md lg:flex-shrink absolute right-0 w-36">
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white text-teal-lighter hover:text-black mr-4 rounded focus:outline-none focus:shadow-outline">
+        Login / Register
       </a>
     </div>
   </div>
@@ -110,5 +110,14 @@
 </div>
 
 <script src="{{ asset('js/app.js') }}"></script>
+<script>
+    document.querySelector('[data-toggle-hide]').addEventListener('click', function() {
+        console.log(this.dataset);
+        document
+            .querySelector(this.dataset.toggleHide)
+            .classList
+            .toggle('hidden');
+    });
+</script>
 </body>
 </html>

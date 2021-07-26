@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
 
@@ -19,4 +20,6 @@ Route::get('/', function () {
 });
 
 Route::get('/movies/{page?}', [MovieController::class, 'index'])->name('movie.index');
-//Route::get('/movies/search', [MovieController::class, 'search'])->name('movie.search');
+Route::get('/login-web', [AuthController::class, 'loginWeb'])->name('web.user.login');
+Route::post('/login-web', [AuthController::class, 'loginWebAuth'])->name('web.user.login');
+	

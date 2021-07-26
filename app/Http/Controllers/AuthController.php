@@ -141,4 +141,14 @@ class AuthController extends Controller
         }
 
     }
+
+    public function loginWeb()
+    {
+
+    }
+
+    public function loginWebAuth()
+    {
+        
+    }
 }
