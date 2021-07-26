@@ -47,7 +47,6 @@
           <h1 class="text-3xl text-center">Temukan Film & Informasi yang kamu cari</h1>
           <div class="flex flex-col sm:flex-row gap-6 mt-2">
             <form action="{{ route('movie.index') }}" method="GET" class="w-full flex flex-col sm:flex-row gap-6 mt-8">
-                @csrf
                 <input type="text" name="search" class="w-2/3 bg-gray-200 p-2 rounded shadow-sm border border-gray-200 focus:outline-none focus:bg-white" placeholder="ketik judul film">
                 <button type="submit" class="w-1/3 bg-indigo-500 text-white p-3 rounded shadow-sm focus:outline-none hover:bg-indigo-700"> Cari</button>
             </form>
@@ -68,7 +67,7 @@
                 </tr>
             </thead>
             <tbody class="bg-gray-200">
-                @if(!empty($movie))
+                @if(!empty($movies))
                 @forelse($movies->Search as $movie)
                     <tr class="bg-white border-2 border-gray-200">
                         <td class="px-16 py-2">
